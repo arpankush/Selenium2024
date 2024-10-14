@@ -1,0 +1,155 @@
+Index: src/main/java/common/UILibrary.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package common;\n\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.WebElement;\n\npublic class UILibrary {\n    WebDriver driver;\n\n    public UILibrary(WebDriver driver){\n        this.driver = driver;\n    }\n\n    public void whenIClickOn(By obj){\n        driver.findElement(obj).click();\n    }\n\n    public void whenISendKeys(By obj, String text, boolean clearToggle){\n        if(clearToggle){\n            driver.findElement(obj).clear();\n        }\n        driver.findElement(obj).sendKeys(text);\n    }\n    public void whenISendKeys(By obj, String text){\n        whenISendKeys(obj, text, false);\n    }\n\n    public String whenIGetText(By obj){\n        return driver.findElement(obj).getText();\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/common/UILibrary.java b/src/main/java/common/UILibrary.java
+--- a/src/main/java/common/UILibrary.java	(revision 57dd2048eafc65cee5f72539cdd68f225a00c798)
++++ b/src/main/java/common/UILibrary.java	(date 1728222714311)
+@@ -2,7 +2,6 @@
+ 
+ import org.openqa.selenium.By;
+ import org.openqa.selenium.WebDriver;
+-import org.openqa.selenium.WebElement;
+ 
+ public class UILibrary {
+     WebDriver driver;
+Index: src/test/java/ElementsTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/ElementsTest.java b/src/test/java/ElementsTest.java
+new file mode 100644
+--- /dev/null	(date 1728317237744)
++++ b/src/test/java/ElementsTest.java	(date 1728317237744)
+@@ -0,0 +1,40 @@
++import Helper.JSHelper;
++import PageObjects.ElementsPage;
++import common.UILibrary;
++import org.openqa.selenium.WebDriver;
++import org.testng.Assert;
++import org.testng.annotations.Test;
++
++public class ElementsTest extends BaseClass {
++
++    WebDriver driver;
++    UILibrary uiLibrary;
++    JSHelper jsHelper;
++    ElementsPage elementsPage;
++
++    public ElementsTest() throws Exception {
++        super();
++        driver = super.driver;
++        uiLibrary = new UILibrary(driver);
++        jsHelper = new JSHelper(driver);
++        elementsPage = new ElementsPage();
++    }
++
++    @Test
++    public void elementsTextBoxTesting() {
++        System.out.println("Test elementsTextBoxTesting");
++        uiLibrary.whenIClickOn(elementsPage.elementsButton);
++        uiLibrary.whenIClickOn(elementsPage.textButton);
++        uiLibrary.whenISendKeys(elementsPage.userNameInput,"Test UserName");
++        uiLibrary.whenISendKeys(elementsPage.emailInput,"testEmail@testing.coo");
++        uiLibrary.whenISendKeys(elementsPage.currentAddressInput,"Current Address Test");
++        uiLibrary.whenISendKeys(elementsPage.permanentAddressInput,"Permanent Address Test");
++        jsHelper.scrollIntoViewOfElement(elementsPage.submitButton);
++        uiLibrary.whenIClickOn(elementsPage.submitButton);
++        Assert.assertEquals("Name:Test UserName", uiLibrary.whenIGetText(elementsPage.nameOutput));
++        Assert.assertEquals("Email:testEmail@testing.coo", uiLibrary.whenIGetText(elementsPage.emailOutput));
++        Assert.assertEquals("Current Address :Current Address Test", uiLibrary.whenIGetText(elementsPage.currentAddressOutput));
++        Assert.assertEquals("Permananet Address :Permanent Address Test", uiLibrary.whenIGetText(elementsPage.permanentAddressOutput));
++    }
++
++}
+Index: src/test/java/BaseClass.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import Helper.JSHelper;\nimport common.UILibrary;\nimport org.openqa.selenium.*;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.interactions.Actions;\nimport org.openqa.selenium.io.FileHandler;\nimport org.testng.Assert;\nimport org.testng.annotations.AfterMethod;\nimport org.testng.annotations.BeforeMethod;\nimport org.testng.annotations.Test;\nimport PageObjects.ElementsPage;\n\nimport java.io.File;\nimport java.io.IOException;\nimport java.time.Duration;\nimport java.util.Properties;\nimport reader.configReader;\n\npublic class BaseClass {\n\n    WebDriver driver;\n    Actions action;\n    ElementsPage elementsPage;\n    JSHelper jsHelper;\n    UILibrary uiLibrary;\n    Properties prop = configReader.propertiesReader();\n\n    public BaseClass() throws Exception {\n    }\n\n    @BeforeMethod\n    public void setup() {\n        driver = new ChromeDriver();\n        driver.get(prop.getProperty(\"webUrl\"));\n        driver.manage().window().fullscreen();\n        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));\n        uiLibrary = new UILibrary(driver);\n        elementsPage = new ElementsPage();\n        jsHelper = new JSHelper(driver);\n    }\n\n    @Test\n    public void elementsTextBoxTesting() {\n        uiLibrary.whenIClickOn(elementsPage.elementsButton);\n        uiLibrary.whenIClickOn(elementsPage.textButton);\n        uiLibrary.whenISendKeys(elementsPage.userNameInput,\"Test UserName\");\n        uiLibrary.whenISendKeys(elementsPage.emailInput,\"testEmail@testing.coo\");\n        uiLibrary.whenISendKeys(elementsPage.currentAddressInput,\"Current Address Test\");\n        uiLibrary.whenISendKeys(elementsPage.permanentAddressInput,\"Permanent Address Test\");\n        jsHelper.scrollIntoViewOfElement(elementsPage.submitButton);\n        uiLibrary.whenIClickOn(elementsPage.submitButton);\n        Assert.assertEquals(\"Name:Test UserName\", uiLibrary.whenIGetText(elementsPage.nameOutput));\n        Assert.assertEquals(\"Email:testEmail@testing.coo\", uiLibrary.whenIGetText(elementsPage.emailOutput));\n        Assert.assertEquals(\"Current Address :Current Address Test\", uiLibrary.whenIGetText(elementsPage.currentAddressOutput));\n        Assert.assertEquals(\"Permananet Address :Permanent Address Test\", uiLibrary.whenIGetText(elementsPage.permanentAddressOutput));\n    }\n\n    @AfterMethod\n    public void tearDown() throws InterruptedException {\n        File ss = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);\n        File dest = new File(System.getProperty(\"user.dir\") + \"/src/test/resources/screenshots/ss.png\");\n        try {\n            FileHandler.copy(ss, dest);\n        } catch (IOException e) {\n            e.printStackTrace();\n        }\n        Thread.sleep(3000);\n        driver.quit();\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/BaseClass.java b/src/test/java/BaseClass.java
+--- a/src/test/java/BaseClass.java	(revision 57dd2048eafc65cee5f72539cdd68f225a00c798)
++++ b/src/test/java/BaseClass.java	(date 1728317360322)
+@@ -1,62 +1,38 @@
+-import Helper.JSHelper;
+-import common.UILibrary;
+-import org.openqa.selenium.*;
++import org.openqa.selenium.OutputType;
++import org.openqa.selenium.TakesScreenshot;
++import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.chrome.ChromeDriver;
+-import org.openqa.selenium.interactions.Actions;
+ import org.openqa.selenium.io.FileHandler;
+-import org.testng.Assert;
+-import org.testng.annotations.AfterMethod;
+-import org.testng.annotations.BeforeMethod;
+-import org.testng.annotations.Test;
+-import PageObjects.ElementsPage;
++import org.testng.annotations.AfterSuite;
++import org.testng.annotations.BeforeSuite;
++import reader.configReader;
+ 
+ import java.io.File;
+ import java.io.IOException;
+ import java.time.Duration;
+ import java.util.Properties;
+-import reader.configReader;
+ 
+ public class BaseClass {
+ 
+     WebDriver driver;
+-    Actions action;
+-    ElementsPage elementsPage;
+-    JSHelper jsHelper;
+-    UILibrary uiLibrary;
+     Properties prop = configReader.propertiesReader();
+ 
+     public BaseClass() throws Exception {
+-    }
+-
+-    @BeforeMethod
+-    public void setup() {
+         driver = new ChromeDriver();
++    }
++
++    @BeforeSuite
++    public void setup() {
++        System.out.println("BeforeSuite setup");
+         driver.get(prop.getProperty("webUrl"));
+-        driver.manage().window().fullscreen();
++        driver.manage().window().maximize();
+         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+-        uiLibrary = new UILibrary(driver);
+-        elementsPage = new ElementsPage();
+-        jsHelper = new JSHelper(driver);
+-    }
+ 
+-    @Test
+-    public void elementsTextBoxTesting() {
+-        uiLibrary.whenIClickOn(elementsPage.elementsButton);
+-        uiLibrary.whenIClickOn(elementsPage.textButton);
+-        uiLibrary.whenISendKeys(elementsPage.userNameInput,"Test UserName");
+-        uiLibrary.whenISendKeys(elementsPage.emailInput,"testEmail@testing.coo");
+-        uiLibrary.whenISendKeys(elementsPage.currentAddressInput,"Current Address Test");
+-        uiLibrary.whenISendKeys(elementsPage.permanentAddressInput,"Permanent Address Test");
+-        jsHelper.scrollIntoViewOfElement(elementsPage.submitButton);
+-        uiLibrary.whenIClickOn(elementsPage.submitButton);
+-        Assert.assertEquals("Name:Test UserName", uiLibrary.whenIGetText(elementsPage.nameOutput));
+-        Assert.assertEquals("Email:testEmail@testing.coo", uiLibrary.whenIGetText(elementsPage.emailOutput));
+-        Assert.assertEquals("Current Address :Current Address Test", uiLibrary.whenIGetText(elementsPage.currentAddressOutput));
+-        Assert.assertEquals("Permananet Address :Permanent Address Test", uiLibrary.whenIGetText(elementsPage.permanentAddressOutput));
+     }
+ 
+-    @AfterMethod
++    @AfterSuite
+     public void tearDown() throws InterruptedException {
++        System.out.println("AfterSuite tearDown");
+         File ss = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+         File dest = new File(System.getProperty("user.dir") + "/src/test/resources/screenshots/ss.png");
+         try {
