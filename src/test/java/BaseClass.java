@@ -23,16 +23,15 @@ public class BaseClass {
 
     @BeforeSuite
     public void setup() {
-        System.out.println("BeforeSuite setup");
+        System.out.println("---BeforeSuite setup---");
         driver.get(prop.getProperty("webUrl"));
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
-
     }
 
     @AfterSuite
     public void tearDown() throws InterruptedException {
-        System.out.println("AfterSuite tearDown");
+        System.out.println("---AfterSuite tearDown---");
         File ss = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
         File dest = new File(System.getProperty("user.dir") + "/src/test/resources/screenshots/ss.png");
         try {
@@ -43,6 +42,4 @@ public class BaseClass {
         Thread.sleep(3000);
         driver.quit();
     }
-
-
 }
