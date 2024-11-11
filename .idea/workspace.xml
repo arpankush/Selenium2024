@@ -4,18 +4,25 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Working project">
-      <change afterPath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" afterDir="false" />
+    <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Buttons Done">
+      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/main/java/common/Initializer.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Helper/JSHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helper/JSHelper.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/PageObjects/ElementsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PageObjects/ElementsPage.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/common/UILibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/UILibrary.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/reader/configReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reader/configReader.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/configurations.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configurations.properties" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/BaseClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseClass.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/java/ElementsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ElementsTest.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/Helper/JSHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Helper/JSHelper.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/classes/common/UILibrary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/common/UILibrary.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reader/configReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/reader/configReader.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/BaseClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/BaseClass.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" afterDir="false" />
     </list>
@@ -62,30 +69,48 @@
   "keyToString": {
     "Application.BaseClass.executor": "Run",
     "RunOnceActivity.ShowReadmeOnStart": "true",
+    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
     "TestNG.BaseClass.executor": "Run",
+    "TestNG.ElementsTest.elementsBrokenLinksTesting.executor": "Run",
     "TestNG.ElementsTest.elementsButtonTesting.executor": "Run",
     "TestNG.ElementsTest.elementsCheckBoxTesting.executor": "Run",
+    "TestNG.ElementsTest.elementsLinkTesting.executor": "Run",
     "TestNG.ElementsTest.elementsRadioBoxTesting.executor": "Run",
     "TestNG.ElementsTest.elementsTextBoxTesting.executor": "Run",
     "TestNG.ElementsTest.elementsWebTablesTesting.executor": "Run",
     "TestNG.ElementsTest.executor": "Run",
     "git-widget-placeholder": "main",
     "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.0",
     "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "configurable.group.language"
+    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
   }
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="common" />
       <recent name="Helper" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.ElementsTest.elementsButtonTesting">
-    <configuration name="ElementsTest.elementsButtonTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+  <component name="RunManager" selected="TestNG.ElementsTest">
+    <configuration name="ElementsTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium2024" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsButtonTesting" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="ElementsTest.elementsBrokenLinksTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Selenium2024" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
+      <option name="METHOD_NAME" value="elementsBrokenLinksTesting" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -93,23 +118,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementsTest.elementsCheckBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="ElementsTest.elementsLinkTesting" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium2024" />
       <option name="PACKAGE_NAME" value="" />
       <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsCheckBoxTesting" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ElementsTest.elementsRadioBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Selenium2024" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsRadioBoxTesting" />
+      <option name="METHOD_NAME" value="elementsLinkTesting" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -143,11 +156,11 @@
     </configuration>
     <recent_temporary>
       <list>
-        <item itemvalue="TestNG.ElementsTest.elementsButtonTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsWebTablesTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsRadioBoxTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsCheckBoxTesting" />
+        <item itemvalue="TestNG.ElementsTest" />
         <item itemvalue="TestNG.ElementsTest.elementsTextBoxTesting" />
+        <item itemvalue="TestNG.ElementsTest.elementsBrokenLinksTesting" />
+        <item itemvalue="TestNG.ElementsTest.elementsLinkTesting" />
+        <item itemvalue="TestNG.ElementsTest.elementsWebTablesTesting" />
       </list>
     </recent_temporary>
   </component>
@@ -184,7 +197,15 @@
       <option name="project" value="LOCAL" />
       <updated>1728125115686</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Buttons Done">
+      <option name="closed" value="true" />
+      <created>1729107546547</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1729107546547</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -201,6 +222,7 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project Setup" />
     <MESSAGE value="Working project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working project" />
+    <MESSAGE value="Buttons Done" />
+    <option name="LAST_COMMIT_MESSAGE" value="Buttons Done" />
   </component>
 </project>
