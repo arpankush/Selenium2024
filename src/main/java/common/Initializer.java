@@ -2,6 +2,7 @@ package common;
 
 import Helper.ActionHelper;
 import Helper.JSHelper;
+import PageObjects.AlertFramePage;
 import PageObjects.ElementsPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
@@ -19,6 +20,7 @@ public class Initializer {
     static ActionHelper actionHelper;
     static JSHelper jsHelper;
     static ElementsPage elementsPage;
+    static AlertFramePage alertFramePage;
     public static String browser;
     public static String webUrl;
 
@@ -46,6 +48,12 @@ public class Initializer {
         if (elementsPage == null)
             elementsPage = new ElementsPage();
         return elementsPage;
+    }
+
+    public static AlertFramePage getAlertFramePage() throws IOException {
+        if (alertFramePage == null)
+            alertFramePage = new AlertFramePage();
+        return alertFramePage;
     }
 
     public static ActionHelper getActionHelper() throws IOException {

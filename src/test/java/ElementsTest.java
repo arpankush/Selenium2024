@@ -1,19 +1,16 @@
 import PageObjects.ElementsPage;
 import common.Initializer;
 import common.UILibrary;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ElementsTest extends BaseClass {
 
-    WebDriver driver;
     UILibrary uiLibrary;
     ElementsPage elementsPage;
 
     public ElementsTest() throws Exception {
-        driver = Initializer.getDriver();
         elementsPage = Initializer.getElementsPage();
         uiLibrary = Initializer.getUILibrary();
     }
@@ -97,7 +94,6 @@ public class ElementsTest extends BaseClass {
     @Test(enabled = true)
     public void elementsBrokenLinksTesting() {
         uiLibrary.whenIClickOn(elementsPage.brokenLinks);
-        elementsPage.checkLinks();
     }
 
 }

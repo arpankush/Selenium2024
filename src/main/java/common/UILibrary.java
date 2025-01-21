@@ -2,6 +2,7 @@ package common;
 
 import Helper.ActionHelper;
 import Helper.JSHelper;
+import org.openqa.selenium.Alert;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 
@@ -79,6 +80,23 @@ public class UILibrary {
             if (!windowIteration.equals(parentWindow))
                 driver.switchTo().window(windowIteration);
         }
+    }
+
+    public String whenIGetAlertText(){
+        Alert alert = driver.switchTo().alert();
+        return alert.getText();
+    }
+
+    public void whenIAcceptAlert(){
+        driver.switchTo().alert().accept();
+    }
+
+    public void whenIDismissAlert(){
+        driver.switchTo().alert().dismiss();
+    }
+
+    public void whenIEnterTextInAlert(String inputText){
+        driver.switchTo().alert().sendKeys(inputText);
     }
 
 

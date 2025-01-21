@@ -1,0 +1,414 @@
+Index: src/test/java/AlertFrameWindowTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/AlertFrameWindowTest.java b/src/test/java/AlertFrameWindowTest.java
+new file mode 100644
+--- /dev/null	(date 1731939127575)
++++ b/src/test/java/AlertFrameWindowTest.java	(date 1731939127575)
+@@ -0,0 +1,34 @@
++import PageObjects.AlertFramePage;
++import common.Initializer;
++import common.UILibrary;
++import org.testng.Assert;
++import org.testng.annotations.BeforeMethod;
++import org.testng.annotations.Test;
++
++import java.io.IOException;
++
++public class AlertFrameWindowTest extends BaseClass {
++
++    UILibrary uiLibrary;
++    AlertFramePage alertFramePage;
++
++    public AlertFrameWindowTest() throws IOException {
++        uiLibrary = Initializer.getUILibrary();
++        alertFramePage = Initializer.getAlertFramePage();
++    }
++
++    @BeforeMethod
++    public void alertFramePageSetup(){
++        uiLibrary.whenIOpenThisUrl(Initializer.webUrl);
++        uiLibrary.whenIClickOn(alertFramePage.alertFrameWindowPage);
++    }
++
++    @Test
++    public void alertTesting(){
++        uiLibrary.whenIClickOn(alertFramePage.alertFrameWindowSection);
++        uiLibrary.whenIClickOn(alertFramePage.alertButton);
++        Assert.assertEquals(uiLibrary.whenIGetAlertText(),"");
++        uiLibrary.whenIDismissAlert();
++    }
++
++}
+Index: src/main/java/PageObjects/AlertFramePage.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package PageObjects;\n\npublic class AlertFramePage {\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/PageObjects/AlertFramePage.java b/src/main/java/PageObjects/AlertFramePage.java
+--- a/src/main/java/PageObjects/AlertFramePage.java	(revision 54d8e2cf381992fe5659cfad432a79a706ded495)
++++ b/src/main/java/PageObjects/AlertFramePage.java	(date 1731345869554)
+@@ -1,4 +1,14 @@
+ package PageObjects;
+ 
++import org.openqa.selenium.By;
++
+ public class AlertFramePage {
++
++    public By alertFrameWindowPage = By.xpath("//*[contains(text(),'Alerts')]/ancestor::div[@class='card mt-4 top-card']");
++    public By alertFrameWindowSection = By.xpath("//span[text()='Alerts']");
++    public By alertButton = By.xpath("//button[@id='alertButton']");
++    public By confirmButton = By.xpath("//button[@id='confirmButton']");
++    public By promptButton = By.xpath("//button[@id='promtButton']");
++
++
+ }
+Index: src/main/java/common/Initializer.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package common;\n\nimport Helper.ActionHelper;\nimport Helper.JSHelper;\nimport PageObjects.ElementsPage;\nimport org.openqa.selenium.WebDriver;\nimport org.openqa.selenium.chrome.ChromeDriver;\nimport org.openqa.selenium.firefox.FirefoxDriver;\nimport reader.configReader;\n\nimport java.io.IOException;\nimport java.util.Properties;\n\npublic class Initializer {\n\n    static WebDriver driver;\n    static Properties prop;\n    static UILibrary uiLibrary;\n    static ActionHelper actionHelper;\n    static JSHelper jsHelper;\n    static ElementsPage elementsPage;\n    public static String browser;\n    public static String webUrl;\n\n    static {\n        try {\n            prop = configReader.propertiesReader();\n        } catch (IOException e) {\n            throw new RuntimeException(e);\n        }\n        browser = prop.getProperty(\"browser\").toLowerCase();\n        webUrl = prop.getProperty(\"webUrl\").toLowerCase();\n    }\n\n    public Initializer() throws IOException {\n        driver = getDriver();\n    }\n\n    public static UILibrary getUILibrary() throws IOException {\n        if (uiLibrary == null)\n            uiLibrary = new UILibrary();\n        return uiLibrary;\n    }\n\n    public static ElementsPage getElementsPage() throws IOException {\n        if (elementsPage == null)\n            elementsPage = new ElementsPage();\n        return elementsPage;\n    }\n\n    public static ActionHelper getActionHelper() throws IOException {\n        if (actionHelper == null)\n            actionHelper = new ActionHelper();\n        return actionHelper;\n    }\n\n    public static JSHelper getJsHelper() throws IOException {\n        if (jsHelper == null)\n            jsHelper = new JSHelper();\n        return jsHelper;\n    }\n\n    public static WebDriver getDriver() {\n        if (driver == null) {\n            switch (browser) {\n                case \"chrome\":\n                    driver = new ChromeDriver();\n                    break;\n                case \"firefox\":\n                    driver = new FirefoxDriver();\n                    break;\n                default:\n                    break;\n            }\n        }\n        return driver;\n    }\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/common/Initializer.java b/src/main/java/common/Initializer.java
+--- a/src/main/java/common/Initializer.java	(revision 54d8e2cf381992fe5659cfad432a79a706ded495)
++++ b/src/main/java/common/Initializer.java	(date 1731345709909)
+@@ -2,6 +2,7 @@
+ 
+ import Helper.ActionHelper;
+ import Helper.JSHelper;
++import PageObjects.AlertFramePage;
+ import PageObjects.ElementsPage;
+ import org.openqa.selenium.WebDriver;
+ import org.openqa.selenium.chrome.ChromeDriver;
+@@ -19,6 +20,7 @@
+     static ActionHelper actionHelper;
+     static JSHelper jsHelper;
+     static ElementsPage elementsPage;
++    static AlertFramePage alertFramePage;
+     public static String browser;
+     public static String webUrl;
+ 
+@@ -48,6 +50,12 @@
+         return elementsPage;
+     }
+ 
++    public static AlertFramePage getAlertFramePage() throws IOException {
++        if (alertFramePage == null)
++            alertFramePage = new AlertFramePage();
++        return alertFramePage;
++    }
++
+     public static ActionHelper getActionHelper() throws IOException {
+         if (actionHelper == null)
+             actionHelper = new ActionHelper();
+Index: src/main/java/common/UILibrary.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>package common;\n\nimport Helper.ActionHelper;\nimport Helper.JSHelper;\nimport org.openqa.selenium.By;\nimport org.openqa.selenium.WebDriver;\n\nimport java.io.IOException;\nimport java.util.Iterator;\n\npublic class UILibrary {\n    WebDriver driver;\n    ActionHelper actionHelper;\n    JSHelper jsHelper;\n\n    public UILibrary() throws IOException {\n        driver = Initializer.getDriver();\n        jsHelper = Initializer.getJsHelper();\n        actionHelper = Initializer.getActionHelper();\n    }\n\n    public void whenIOpenThisUrl(String obj) {\n        driver.get(obj);\n    }\n\n    public void whenIClickOn(By obj) {\n        jsHelper.scrollIntoViewOfElement(driver.findElement(obj));\n        driver.findElement(obj).click();\n    }\n\n    public void whenIRightClickOn(By obj) {\n        jsHelper.scrollIntoViewOfElement(driver.findElement(obj));\n        actionHelper.rightClickOn(driver.findElement(obj));\n    }\n\n    public void whenIDoubleClickOn(By obj) {\n        jsHelper.scrollIntoViewOfElement(driver.findElement(obj));\n        actionHelper.doubleClickOn(driver.findElement(obj));\n    }\n\n    public void whenIScrollIntoView(By obj) {\n        jsHelper.scrollIntoViewOfElement(driver.findElement(obj));\n    }\n\n    public void whenISendKeys(By obj, String text, boolean clearToggle) {\n        jsHelper.scrollIntoViewOfElement(driver.findElement(obj));\n        if (clearToggle) {\n            driver.findElement(obj).clear();\n        }\n        driver.findElement(obj).sendKeys(text);\n    }\n\n    public void whenISendKeys(By obj, String text) {\n        whenISendKeys(obj, text, false);\n    }\n\n    public String whenIGetText(By obj) {\n        jsHelper.scrollIntoViewOfElement(driver.findElement(obj));\n        return driver.findElement(obj).getText();\n    }\n\n    public boolean whenICheckThisIsDisplayed(By obj) {\n        return driver.findElement(obj).isDisplayed();\n    }\n\n    public boolean whenICheckThisIsEnabled(By obj) {\n        return driver.findElement(obj).isEnabled();\n    }\n\n    public boolean whenICheckThisIsSelected(By obj) {\n        return driver.findElement(obj).isSelected();\n    }\n\n    public void whenISwitchToAnotherWindow() {\n        String parentWindow = driver.getWindowHandle();\n        Iterator<String> itr = driver.getWindowHandles().iterator();\n        while (itr.hasNext()) {\n            String windowIteration = itr.next();\n            if (!windowIteration.equals(parentWindow))\n                driver.switchTo().window(windowIteration);\n        }\n    }\n\n\n}\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/main/java/common/UILibrary.java b/src/main/java/common/UILibrary.java
+--- a/src/main/java/common/UILibrary.java	(revision 54d8e2cf381992fe5659cfad432a79a706ded495)
++++ b/src/main/java/common/UILibrary.java	(date 1731939127583)
+@@ -2,6 +2,7 @@
+ 
+ import Helper.ActionHelper;
+ import Helper.JSHelper;
++import org.openqa.selenium.Alert;
+ import org.openqa.selenium.By;
+ import org.openqa.selenium.WebDriver;
+ 
+@@ -81,5 +82,22 @@
+         }
+     }
+ 
++    public String whenIGetAlertText(){
++        Alert alert = driver.switchTo().alert();
++        return alert.getText();
++    }
++
++    public void whenIAcceptAlert(){
++        driver.switchTo().alert().accept();
++    }
++
++    public void whenIDismissAlert(){
++        driver.switchTo().alert().dismiss();
++    }
++
++    public void whenIEnterTextInAlert(String inputText){
++        driver.switchTo().alert().sendKeys(inputText);
++    }
++
+ 
+ }
+Index: target/classes/configurations.properties
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>browser = chrome\n\nwebUrl = https://demoqa.com/
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>ISO-8859-1
+===================================================================
+diff --git a/target/classes/configurations.properties b/target/classes/configurations.properties
+--- a/target/classes/configurations.properties	(revision 54d8e2cf381992fe5659cfad432a79a706ded495)
++++ b/target/classes/configurations.properties	(date 1730999859603)
+@@ -1,3 +1,2 @@
+-browser = chrome
+-
+-webUrl = https://demoqa.com/
+\ No newline at end of file
++webUrl=https://demoqa.com/
++browser=chrome
+Index: .idea/workspace.xml
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+><?xml version=\"1.0\" encoding=\"UTF-8\"?>\n<project version=\"4\">\n  <component name=\"AutoImportSettings\">\n    <option name=\"autoReloadType\" value=\"SELECTIVE\" />\n  </component>\n  <component name=\"ChangeListManager\">\n    <list default=\"true\" id=\"88dac95a-f16e-410e-af09-c0a1f188cf56\" name=\"Changes\" comment=\"Buttons Done\">\n      <change afterPath=\"$PROJECT_DIR$/.idea/vcs.xml\" afterDir=\"false\" />\n      <change afterPath=\"$PROJECT_DIR$/src/main/java/common/Initializer.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/misc.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/misc.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/.idea/workspace.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/.idea/workspace.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/pom.xml\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/pom.xml\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/Helper/JSHelper.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/Helper/JSHelper.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/PageObjects/ElementsPage.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/PageObjects/ElementsPage.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/common/UILibrary.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/common/UILibrary.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/java/reader/configReader.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/java/reader/configReader.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/main/resources/configurations.properties\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/main/resources/configurations.properties\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/BaseClass.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/BaseClass.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/test/java/ElementsTest.java\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/java/ElementsTest.java\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/src/test/resources/screenshots/ss.png\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/src/test/resources/screenshots/ss.png\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/Helper/JSHelper.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/Helper/JSHelper.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/common/UILibrary.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/common/UILibrary.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/classes/reader/configReader.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/classes/reader/configReader.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/test-classes/BaseClass.class\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/test-classes/BaseClass.class\" afterDir=\"false\" />\n      <change beforePath=\"$PROJECT_DIR$/target/test-classes/screenshots/ss.png\" beforeDir=\"false\" afterPath=\"$PROJECT_DIR$/target/test-classes/screenshots/ss.png\" afterDir=\"false\" />\n    </list>\n    <option name=\"SHOW_DIALOG\" value=\"false\" />\n    <option name=\"HIGHLIGHT_CONFLICTS\" value=\"true\" />\n    <option name=\"HIGHLIGHT_NON_ACTIVE_CHANGELIST\" value=\"false\" />\n    <option name=\"LAST_RESOLUTION\" value=\"IGNORE\" />\n  </component>\n  <component name=\"FileTemplateManagerImpl\">\n    <option name=\"RECENT_TEMPLATES\">\n      <list>\n        <option value=\"Class\" />\n      </list>\n    </option>\n  </component>\n  <component name=\"Git.Settings\">\n    <option name=\"RECENT_GIT_ROOT_PATH\" value=\"$PROJECT_DIR$\" />\n  </component>\n  <component name=\"GitHubPullRequestSearchHistory\">{\n  &quot;lastFilter&quot;: {\n    &quot;state&quot;: &quot;OPEN&quot;,\n    &quot;assignee&quot;: &quot;arpankush&quot;\n  }\n}</component>\n  <component name=\"GithubPullRequestsUISettings\">{\n  &quot;selectedUrlAndAccountId&quot;: {\n    &quot;url&quot;: &quot;https://github.com/arpankush/Selenium2024.git&quot;,\n    &quot;accountId&quot;: &quot;2eb7262c-4adf-4d1f-b298-1bc8823e17d5&quot;\n  }\n}</component>\n  <component name=\"ProblemsViewState\">\n    <option name=\"selectedTabId\" value=\"CurrentFile\" />\n  </component>\n  <component name=\"ProjectColorInfo\">{\n  &quot;associatedIndex&quot;: 2\n}</component>\n  <component name=\"ProjectId\" id=\"2mT1vSzSikOBpUul3X0ATlifr6r\" />\n  <component name=\"ProjectLevelVcsManager\" settingsEditedManually=\"true\" />\n  <component name=\"ProjectViewState\">\n    <option name=\"hideEmptyMiddlePackages\" value=\"true\" />\n    <option name=\"showLibraryContents\" value=\"true\" />\n  </component>\n  <component name=\"PropertiesComponent\"><![CDATA[{\n  \"keyToString\": {\n    \"Application.BaseClass.executor\": \"Run\",\n    \"RunOnceActivity.ShowReadmeOnStart\": \"true\",\n    \"SHARE_PROJECT_CONFIGURATION_FILES\": \"true\",\n    \"TestNG.BaseClass.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsBrokenLinksTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsButtonTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsCheckBoxTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsLinkTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsRadioBoxTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsTextBoxTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.elementsWebTablesTesting.executor\": \"Run\",\n    \"TestNG.ElementsTest.executor\": \"Run\",\n    \"git-widget-placeholder\": \"main\",\n    \"kotlin-language-version-configured\": \"true\",\n    \"project.structure.last.edited\": \"Modules\",\n    \"project.structure.proportion\": \"0.15\",\n    \"project.structure.side.proportion\": \"0.0\",\n    \"run.code.analysis.last.selected.profile\": \"pProject Default\",\n    \"settings.editor.selected.configurable\": \"reference.settings.project.maven.importing\"\n  }\n}]]></component>\n  <component name=\"RecentsManager\">\n    <key name=\"CopyClassDialog.RECENTS_KEY\">\n      <recent name=\"common\" />\n      <recent name=\"Helper\" />\n    </key>\n  </component>\n  <component name=\"RunManager\" selected=\"TestNG.ElementsTest\">\n    <configuration name=\"ElementsTest\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"Selenium2024\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"ElementsTest\" />\n      <option name=\"TEST_OBJECT\" value=\"CLASS\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ElementsTest.elementsBrokenLinksTesting\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"Selenium2024\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"ElementsTest\" />\n      <option name=\"METHOD_NAME\" value=\"elementsBrokenLinksTesting\" />\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ElementsTest.elementsLinkTesting\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"Selenium2024\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"ElementsTest\" />\n      <option name=\"METHOD_NAME\" value=\"elementsLinkTesting\" />\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ElementsTest.elementsTextBoxTesting\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"Selenium2024\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"ElementsTest\" />\n      <option name=\"METHOD_NAME\" value=\"elementsTextBoxTesting\" />\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <configuration name=\"ElementsTest.elementsWebTablesTesting\" type=\"TestNG\" temporary=\"true\" nameIsGenerated=\"true\">\n      <module name=\"Selenium2024\" />\n      <option name=\"PACKAGE_NAME\" value=\"\" />\n      <option name=\"MAIN_CLASS_NAME\" value=\"ElementsTest\" />\n      <option name=\"METHOD_NAME\" value=\"elementsWebTablesTesting\" />\n      <option name=\"TEST_OBJECT\" value=\"METHOD\" />\n      <properties />\n      <listeners />\n      <method v=\"2\">\n        <option name=\"Make\" enabled=\"true\" />\n      </method>\n    </configuration>\n    <recent_temporary>\n      <list>\n        <item itemvalue=\"TestNG.ElementsTest\" />\n        <item itemvalue=\"TestNG.ElementsTest.elementsTextBoxTesting\" />\n        <item itemvalue=\"TestNG.ElementsTest.elementsBrokenLinksTesting\" />\n        <item itemvalue=\"TestNG.ElementsTest.elementsLinkTesting\" />\n        <item itemvalue=\"TestNG.ElementsTest.elementsWebTablesTesting\" />\n      </list>\n    </recent_temporary>\n  </component>\n  <component name=\"SpellCheckerSettings\" RuntimeDictionaries=\"0\" Folders=\"0\" CustomDictionaries=\"0\" DefaultDictionary=\"application-level\" UseSingleDictionary=\"true\" transferred=\"true\" />\n  <component name=\"TaskManager\">\n    <task active=\"true\" id=\"Default\" summary=\"Default task\">\n      <changelist id=\"88dac95a-f16e-410e-af09-c0a1f188cf56\" name=\"Changes\" comment=\"\" />\n      <created>1727085982602</created>\n      <option name=\"number\" value=\"Default\" />\n      <option name=\"presentableId\" value=\"Default\" />\n      <updated>1727085982602</updated>\n    </task>\n    <task id=\"LOCAL-00001\" summary=\"Project Setup\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727900519063</created>\n      <option name=\"number\" value=\"00001\" />\n      <option name=\"presentableId\" value=\"LOCAL-00001\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727900519063</updated>\n    </task>\n    <task id=\"LOCAL-00002\" summary=\"Project Setup\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1727900760050</created>\n      <option name=\"number\" value=\"00002\" />\n      <option name=\"presentableId\" value=\"LOCAL-00002\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1727900760050</updated>\n    </task>\n    <task id=\"LOCAL-00003\" summary=\"Working project\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1728125115686</created>\n      <option name=\"number\" value=\"00003\" />\n      <option name=\"presentableId\" value=\"LOCAL-00003\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1728125115686</updated>\n    </task>\n    <task id=\"LOCAL-00004\" summary=\"Buttons Done\">\n      <option name=\"closed\" value=\"true\" />\n      <created>1729107546547</created>\n      <option name=\"number\" value=\"00004\" />\n      <option name=\"presentableId\" value=\"LOCAL-00004\" />\n      <option name=\"project\" value=\"LOCAL\" />\n      <updated>1729107546547</updated>\n    </task>\n    <option name=\"localTasksCounter\" value=\"5\" />\n    <servers />\n  </component>\n  <component name=\"Vcs.Log.Tabs.Properties\">\n    <option name=\"TAB_STATES\">\n      <map>\n        <entry key=\"MAIN\">\n          <value>\n            <State />\n          </value>\n        </entry>\n      </map>\n    </option>\n  </component>\n  <component name=\"VcsManagerConfiguration\">\n    <MESSAGE value=\"Project Setup\" />\n    <MESSAGE value=\"Working project\" />\n    <MESSAGE value=\"Buttons Done\" />\n    <option name=\"LAST_COMMIT_MESSAGE\" value=\"Buttons Done\" />\n  </component>\n</project>
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/.idea/workspace.xml b/.idea/workspace.xml
+--- a/.idea/workspace.xml	(revision 54d8e2cf381992fe5659cfad432a79a706ded495)
++++ b/.idea/workspace.xml	(date 1737370786715)
+@@ -4,26 +4,17 @@
+     <option name="autoReloadType" value="SELECTIVE" />
+   </component>
+   <component name="ChangeListManager">
+-    <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Buttons Done">
+-      <change afterPath="$PROJECT_DIR$/.idea/vcs.xml" afterDir="false" />
+-      <change afterPath="$PROJECT_DIR$/src/main/java/common/Initializer.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
++    <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Elements done.">
++      <change afterPath="$PROJECT_DIR$/src/test/java/AlertFrameWindowTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/Helper/JSHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helper/JSHelper.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/PageObjects/ElementsPage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PageObjects/ElementsPage.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/PageObjects/AlertFramePage.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/PageObjects/AlertFramePage.java" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/src/main/java/common/Initializer.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/Initializer.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/main/java/common/UILibrary.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/common/UILibrary.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/java/reader/configReader.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/reader/configReader.java" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/main/resources/configurations.properties" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/configurations.properties" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/src/test/java/BaseClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseClass.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/test/java/ElementsTest.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/ElementsTest.java" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/Helper/JSHelper.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/Helper/JSHelper.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/classes/common/UILibrary.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/common/UILibrary.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/classes/reader/configReader.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/reader/configReader.class" afterDir="false" />
+-      <change beforePath="$PROJECT_DIR$/target/test-classes/BaseClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/BaseClass.class" afterDir="false" />
++      <change beforePath="$PROJECT_DIR$/target/classes/configurations.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/configurations.properties" afterDir="false" />
+       <change beforePath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" afterDir="false" />
+     </list>
+     <option name="SHOW_DIALOG" value="false" />
+@@ -65,40 +56,42 @@
+     <option name="hideEmptyMiddlePackages" value="true" />
+     <option name="showLibraryContents" value="true" />
+   </component>
+-  <component name="PropertiesComponent"><![CDATA[{
+-  "keyToString": {
+-    "Application.BaseClass.executor": "Run",
+-    "RunOnceActivity.ShowReadmeOnStart": "true",
+-    "SHARE_PROJECT_CONFIGURATION_FILES": "true",
+-    "TestNG.BaseClass.executor": "Run",
+-    "TestNG.ElementsTest.elementsBrokenLinksTesting.executor": "Run",
+-    "TestNG.ElementsTest.elementsButtonTesting.executor": "Run",
+-    "TestNG.ElementsTest.elementsCheckBoxTesting.executor": "Run",
+-    "TestNG.ElementsTest.elementsLinkTesting.executor": "Run",
+-    "TestNG.ElementsTest.elementsRadioBoxTesting.executor": "Run",
+-    "TestNG.ElementsTest.elementsTextBoxTesting.executor": "Run",
+-    "TestNG.ElementsTest.elementsWebTablesTesting.executor": "Run",
+-    "TestNG.ElementsTest.executor": "Run",
+-    "git-widget-placeholder": "main",
+-    "kotlin-language-version-configured": "true",
+-    "project.structure.last.edited": "Modules",
+-    "project.structure.proportion": "0.15",
+-    "project.structure.side.proportion": "0.0",
+-    "run.code.analysis.last.selected.profile": "pProject Default",
+-    "settings.editor.selected.configurable": "reference.settings.project.maven.importing"
++  <component name="PropertiesComponent">{
++  &quot;keyToString&quot;: {
++    &quot;Application.BaseClass.executor&quot;: &quot;Run&quot;,
++    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
++    &quot;SHARE_PROJECT_CONFIGURATION_FILES&quot;: &quot;true&quot;,
++    &quot;TestNG.AlertFrameWindowTest.alertTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.AlertFrameWindowTest.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.BaseClass.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsBrokenLinksTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsButtonTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsCheckBoxTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsLinkTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsRadioBoxTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsTextBoxTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.elementsWebTablesTesting.executor&quot;: &quot;Run&quot;,
++    &quot;TestNG.ElementsTest.executor&quot;: &quot;Run&quot;,
++    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
++    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
++    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
++    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
++    &quot;project.structure.side.proportion&quot;: &quot;0.0&quot;,
++    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
++    &quot;settings.editor.selected.configurable&quot;: &quot;reference.settings.project.maven.importing&quot;
+   }
+-}]]></component>
++}</component>
+   <component name="RecentsManager">
+     <key name="CopyClassDialog.RECENTS_KEY">
+       <recent name="common" />
+       <recent name="Helper" />
+     </key>
+   </component>
+-  <component name="RunManager" selected="TestNG.ElementsTest">
+-    <configuration name="ElementsTest" type="TestNG" temporary="true" nameIsGenerated="true">
++  <component name="RunManager" selected="TestNG.ElementsTest.elementsTextBoxTesting">
++    <configuration name="AlertFrameWindowTest" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="Selenium2024" />
+       <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
++      <option name="MAIN_CLASS_NAME" value="AlertFrameWindowTest" />
+       <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+@@ -106,11 +99,11 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ElementsTest.elementsBrokenLinksTesting" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="AlertFrameWindowTest.alertTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="Selenium2024" />
+       <option name="PACKAGE_NAME" value="" />
+-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
+-      <option name="METHOD_NAME" value="elementsBrokenLinksTesting" />
++      <option name="MAIN_CLASS_NAME" value="AlertFrameWindowTest" />
++      <option name="METHOD_NAME" value="alertTesting" />
+       <option name="TEST_OBJECT" value="METHOD" />
+       <properties />
+       <listeners />
+@@ -118,23 +111,22 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ElementsTest.elementsLinkTesting" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="ElementsTest" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="Selenium2024" />
+       <option name="PACKAGE_NAME" value="" />
+       <option name="MAIN_CLASS_NAME" value="ElementsTest" />
+-      <option name="METHOD_NAME" value="elementsLinkTesting" />
+-      <option name="TEST_OBJECT" value="METHOD" />
++      <option name="TEST_OBJECT" value="CLASS" />
+       <properties />
+       <listeners />
+       <method v="2">
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ElementsTest.elementsTextBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="ElementsTest.elementsBrokenLinksTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="Selenium2024" />
+       <option name="PACKAGE_NAME" value="" />
+       <option name="MAIN_CLASS_NAME" value="ElementsTest" />
+-      <option name="METHOD_NAME" value="elementsTextBoxTesting" />
++      <option name="METHOD_NAME" value="elementsBrokenLinksTesting" />
+       <option name="TEST_OBJECT" value="METHOD" />
+       <properties />
+       <listeners />
+@@ -142,11 +134,11 @@
+         <option name="Make" enabled="true" />
+       </method>
+     </configuration>
+-    <configuration name="ElementsTest.elementsWebTablesTesting" type="TestNG" temporary="true" nameIsGenerated="true">
++    <configuration name="ElementsTest.elementsTextBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+       <module name="Selenium2024" />
+       <option name="PACKAGE_NAME" value="" />
+       <option name="MAIN_CLASS_NAME" value="ElementsTest" />
+-      <option name="METHOD_NAME" value="elementsWebTablesTesting" />
++      <option name="METHOD_NAME" value="elementsTextBoxTesting" />
+       <option name="TEST_OBJECT" value="METHOD" />
+       <properties />
+       <listeners />
+@@ -156,11 +148,11 @@
+     </configuration>
+     <recent_temporary>
+       <list>
+-        <item itemvalue="TestNG.ElementsTest" />
+         <item itemvalue="TestNG.ElementsTest.elementsTextBoxTesting" />
++        <item itemvalue="TestNG.AlertFrameWindowTest.alertTesting" />
++        <item itemvalue="TestNG.AlertFrameWindowTest" />
++        <item itemvalue="TestNG.ElementsTest" />
+         <item itemvalue="TestNG.ElementsTest.elementsBrokenLinksTesting" />
+-        <item itemvalue="TestNG.ElementsTest.elementsLinkTesting" />
+-        <item itemvalue="TestNG.ElementsTest.elementsWebTablesTesting" />
+       </list>
+     </recent_temporary>
+   </component>
+@@ -205,7 +197,15 @@
+       <option name="project" value="LOCAL" />
+       <updated>1729107546547</updated>
+     </task>
+-    <option name="localTasksCounter" value="5" />
++    <task id="LOCAL-00005" summary="Elements done.">
++      <option name="closed" value="true" />
++      <created>1731344333364</created>
++      <option name="number" value="00005" />
++      <option name="presentableId" value="LOCAL-00005" />
++      <option name="project" value="LOCAL" />
++      <updated>1731344333364</updated>
++    </task>
++    <option name="localTasksCounter" value="6" />
+     <servers />
+   </component>
+   <component name="Vcs.Log.Tabs.Properties">
+@@ -223,6 +223,7 @@
+     <MESSAGE value="Project Setup" />
+     <MESSAGE value="Working project" />
+     <MESSAGE value="Buttons Done" />
+-    <option name="LAST_COMMIT_MESSAGE" value="Buttons Done" />
++    <MESSAGE value="Elements done." />
++    <option name="LAST_COMMIT_MESSAGE" value="Elements done." />
+   </component>
+ </project>
+\ No newline at end of file
+Index: src/test/java/ElementsTest.java
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import PageObjects.ElementsPage;\nimport common.Initializer;\nimport common.UILibrary;\nimport org.openqa.selenium.WebDriver;\nimport org.testng.Assert;\nimport org.testng.annotations.BeforeMethod;\nimport org.testng.annotations.Test;\n\npublic class ElementsTest extends BaseClass {\n\n    WebDriver driver;\n    UILibrary uiLibrary;\n    ElementsPage elementsPage;\n\n    public ElementsTest() throws Exception {\n        driver = Initializer.getDriver();\n        elementsPage = Initializer.getElementsPage();\n        uiLibrary = Initializer.getUILibrary();\n    }\n\n    @BeforeMethod\n    public void elementTestSetup() {\n        uiLibrary.whenIOpenThisUrl(Initializer.webUrl);\n        uiLibrary.whenIClickOn(elementsPage.elementsButton);\n    }\n\n    @Test(enabled = true)\n    public void elementsTextBoxTesting() {\n        uiLibrary.whenIClickOn(elementsPage.textButton);\n        uiLibrary.whenISendKeys(elementsPage.userNameInput, \"Test UserName\");\n        uiLibrary.whenISendKeys(elementsPage.emailInput, \"testEmail@testing.coo\");\n        uiLibrary.whenISendKeys(elementsPage.currentAddressInput, \"Current Address Test\");\n        uiLibrary.whenISendKeys(elementsPage.permanentAddressInput, \"Permanent Address Test\");\n        uiLibrary.whenIScrollIntoView(elementsPage.submitButton);\n        uiLibrary.whenIClickOn(elementsPage.submitButton);\n        Assert.assertEquals(\"Name:Test UserName\", uiLibrary.whenIGetText(elementsPage.nameOutput));\n        Assert.assertEquals(\"Email:testEmail@testing.coo\", uiLibrary.whenIGetText(elementsPage.emailOutput));\n        Assert.assertEquals(\"Current Address :Current Address Test\", uiLibrary.whenIGetText(elementsPage.currentAddressOutput));\n        Assert.assertEquals(\"Permananet Address :Permanent Address Test\", uiLibrary.whenIGetText(elementsPage.permanentAddressOutput));\n    }\n\n    @Test(enabled = true)\n    public void elementsCheckBoxTesting() {\n        uiLibrary.whenIClickOn(elementsPage.checkBoxButton);\n        uiLibrary.whenIClickOn(elementsPage.homeCheckbox);\n        uiLibrary.whenIClickOn(elementsPage.homeCheckboxToggle);\n        Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.checkboxResult).contains(\"home\"));\n        uiLibrary.whenIClickOn(elementsPage.desktopCheckbox);\n        Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.checkboxResult).contains(\"documents\"));\n        Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.checkboxResult).contains(\"downloads\"));\n    }\n\n    @Test(enabled = true)\n    public void elementsRadioBoxTesting() {\n        uiLibrary.whenIClickOn(elementsPage.radioBoxButton);\n        Assert.assertTrue(uiLibrary.whenICheckThisIsEnabled(elementsPage.impressiveRadio));\n        uiLibrary.whenIClickOn(elementsPage.impressiveRadio);\n        Assert.assertTrue(uiLibrary.whenICheckThisIsSelected(elementsPage.impressiveRadioCheckbox));\n        Assert.assertFalse(uiLibrary.whenICheckThisIsEnabled(elementsPage.noRadioCheckbox));\n        uiLibrary.whenIClickOn(elementsPage.noRadio);\n    }\n\n    @Test(enabled = true)\n    public void elementsWebTablesTesting() {\n        uiLibrary.whenIClickOn(elementsPage.webTables);\n        uiLibrary.whenIClickOn(elementsPage.addNewRecordButton);\n        uiLibrary.whenISendKeys(elementsPage.firstNameWebTables, \"Arpan\");\n        uiLibrary.whenISendKeys(elementsPage.lastNameWebTables, \"Kush\");\n        uiLibrary.whenISendKeys(elementsPage.userEmailTables, \"arku@ex.co\");\n        uiLibrary.whenISendKeys(elementsPage.ageWebTables, \"28\");\n        uiLibrary.whenISendKeys(elementsPage.salaryWebTables, \"8000\");\n        uiLibrary.whenISendKeys(elementsPage.departmentWebTables, \"Computer\");\n        uiLibrary.whenIClickOn(elementsPage.addNewRecordSubmitButton);\n        Assert.assertTrue(uiLibrary.whenICheckThisIsEnabled(elementsPage.impressiveRadio));\n\n    }\n\n    @Test(enabled = true)\n    public void elementsButtonTesting() {\n        uiLibrary.whenIClickOn(elementsPage.buttons);\n        uiLibrary.whenIClickOn(elementsPage.clickMeBtn);\n        Assert.assertEquals(uiLibrary.whenIGetText(elementsPage.dynamicClickMessage), \"You have done a dynamic click\");\n        uiLibrary.whenIRightClickOn(elementsPage.rightClickBtn);\n        Assert.assertEquals(uiLibrary.whenIGetText(elementsPage.rightClickMessage), \"You have done a right click\");\n        uiLibrary.whenIDoubleClickOn(elementsPage.doubleClickBtn);\n        Assert.assertEquals(uiLibrary.whenIGetText(elementsPage.doubleClickMessage), \"You have done a double click\");\n    }\n\n    @Test(enabled = true)\n    public void elementsLinkTesting() {\n        uiLibrary.whenIClickOn(elementsPage.links);\n        uiLibrary.whenIClickOn(elementsPage.homeLinks);\n        uiLibrary.whenISwitchToAnotherWindow();\n        uiLibrary.whenICheckThisIsDisplayed(elementsPage.homeTrainingBanner);\n    }\n\n    @Test(enabled = true)\n    public void elementsBrokenLinksTesting() {\n        uiLibrary.whenIClickOn(elementsPage.brokenLinks);\n        elementsPage.checkLinks();\n    }\n\n}
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/src/test/java/ElementsTest.java b/src/test/java/ElementsTest.java
+--- a/src/test/java/ElementsTest.java	(revision 54d8e2cf381992fe5659cfad432a79a706ded495)
++++ b/src/test/java/ElementsTest.java	(date 1731345709899)
+@@ -1,19 +1,16 @@
+ import PageObjects.ElementsPage;
+ import common.Initializer;
+ import common.UILibrary;
+-import org.openqa.selenium.WebDriver;
+ import org.testng.Assert;
+ import org.testng.annotations.BeforeMethod;
+ import org.testng.annotations.Test;
+ 
+ public class ElementsTest extends BaseClass {
+ 
+-    WebDriver driver;
+     UILibrary uiLibrary;
+     ElementsPage elementsPage;
+ 
+     public ElementsTest() throws Exception {
+-        driver = Initializer.getDriver();
+         elementsPage = Initializer.getElementsPage();
+         uiLibrary = Initializer.getUILibrary();
+     }
+@@ -97,7 +94,6 @@
+     @Test(enabled = true)
+     public void elementsBrokenLinksTesting() {
+         uiLibrary.whenIClickOn(elementsPage.brokenLinks);
+-        elementsPage.checkLinks();
+     }
+ 
+ }
+\ No newline at end of file
