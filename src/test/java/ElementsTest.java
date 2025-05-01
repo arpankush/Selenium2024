@@ -1,36 +1,33 @@
 import PageObjects.ElementsPage;
+import common.Initializer;
 import common.UILibrary;
-import org.openqa.selenium.WebDriver;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
 
 public class ElementsTest extends BaseClass {
 
-    WebDriver driver;
     UILibrary uiLibrary;
     ElementsPage elementsPage;
 
     public ElementsTest() throws Exception {
-        super();
-        driver = super.driver;
-        uiLibrary = new UILibrary(driver);
-        elementsPage = new ElementsPage();
+        elementsPage = Initializer.getElementsPage();
+        uiLibrary = Initializer.getUILibrary();
     }
 
     @BeforeMethod
-    public void elementTestSetup(){
-        System.out.println("---BeforeMethod elementTestSetup---");
+    public void elementTestSetup() {
+        uiLibrary.whenIOpenThisUrl(Initializer.webUrl);
         uiLibrary.whenIClickOn(elementsPage.elementsButton);
     }
 
-    @Test
+    @Test(enabled = true)
     public void elementsTextBoxTesting() {
         uiLibrary.whenIClickOn(elementsPage.textButton);
-        uiLibrary.whenISendKeys(elementsPage.userNameInput,"Test UserName");
-        uiLibrary.whenISendKeys(elementsPage.emailInput,"testEmail@testing.coo");
-        uiLibrary.whenISendKeys(elementsPage.currentAddressInput,"Current Address Test");
-        uiLibrary.whenISendKeys(elementsPage.permanentAddressInput,"Permanent Address Test");
+        uiLibrary.whenISendKeys(elementsPage.userNameInput, "Test UserName");
+        uiLibrary.whenISendKeys(elementsPage.emailInput, "testEmail@testing.coo");
+        uiLibrary.whenISendKeys(elementsPage.currentAddressInput, "Current Address Test");
+        uiLibrary.whenISendKeys(elementsPage.permanentAddressInput, "Permanent Address Test");
         uiLibrary.whenIScrollIntoView(elementsPage.submitButton);
         uiLibrary.whenIClickOn(elementsPage.submitButton);
         Assert.assertEquals("Name:Test UserName", uiLibrary.whenIGetText(elementsPage.nameOutput));
@@ -39,8 +36,8 @@ public class ElementsTest extends BaseClass {
         Assert.assertEquals("Permananet Address :Permanent Address Test", uiLibrary.whenIGetText(elementsPage.permanentAddressOutput));
     }
 
-    @Test
-    public void elementsCheckBoxTesting() throws InterruptedException {
+    @Test(enabled = true)
+    public void elementsCheckBoxTesting() {
         uiLibrary.whenIClickOn(elementsPage.checkBoxButton);
         uiLibrary.whenIClickOn(elementsPage.homeCheckbox);
         uiLibrary.whenIClickOn(elementsPage.homeCheckboxToggle);
@@ -50,41 +47,53 @@ public class ElementsTest extends BaseClass {
         Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.checkboxResult).contains("downloads"));
     }
 
-    @Test
-    public void elementsRadioBoxTesting() throws InterruptedException {
+    @Test(enabled = true)
+    public void elementsRadioBoxTesting() {
         uiLibrary.whenIClickOn(elementsPage.radioBoxButton);
-        Assert.assertTrue(uiLibrary.whenICheckIsEnabled(elementsPage.impressiveRadio));
+        Assert.assertTrue(uiLibrary.whenICheckThisIsEnabled(elementsPage.impressiveRadio));
         uiLibrary.whenIClickOn(elementsPage.impressiveRadio);
-        Assert.assertTrue(uiLibrary.whenICheckIsSelected(elementsPage.impressiveRadioCheckbox));
-        Assert.assertFalse(uiLibrary.whenICheckIsEnabled(elementsPage.noRadioCheckbox));
+        Assert.assertTrue(uiLibrary.whenICheckThisIsSelected(elementsPage.impressiveRadioCheckbox));
+        Assert.assertFalse(uiLibrary.whenICheckThisIsEnabled(elementsPage.noRadioCheckbox));
         uiLibrary.whenIClickOn(elementsPage.noRadio);
     }
 
-    @Test
-    public void elementsWebTablesTesting() throws InterruptedException {
+    @Test(enabled = true)
+    public void elementsWebTablesTesting() {
         uiLibrary.whenIClickOn(elementsPage.webTables);
         uiLibrary.whenIClickOn(elementsPage.addNewRecordButton);
-        uiLibrary.whenISendKeys(elementsPage.firstNameWebTables,"Arpan");
-        uiLibrary.whenISendKeys(elementsPage.lastNameWebTables,"Kush");
-        uiLibrary.whenISendKeys(elementsPage.userEmailTables,"arku@ex.co");
-        uiLibrary.whenISendKeys(elementsPage.ageWebTables,"28");
-        uiLibrary.whenISendKeys(elementsPage.salaryWebTables,"8000");
-        uiLibrary.whenISendKeys(elementsPage.departmentWebTables,"Computer");
+        uiLibrary.whenISendKeys(elementsPage.firstNameWebTables, "Arpan");
+        uiLibrary.whenISendKeys(elementsPage.lastNameWebTables, "Kush");
+        uiLibrary.whenISendKeys(elementsPage.userEmailTables, "arku@ex.co");
+        uiLibrary.whenISendKeys(elementsPage.ageWebTables, "28");
+        uiLibrary.whenISendKeys(elementsPage.salaryWebTables, "8000");
+        uiLibrary.whenISendKeys(elementsPage.departmentWebTables, "Computer");
         uiLibrary.whenIClickOn(elementsPage.addNewRecordSubmitButton);
-        Thread.sleep(10000);
-//        Assert.assertTrue(uiLibrary.whenICheckIsEnabled(elementsPage.impressiveRadio));
+        Assert.assertTrue(uiLibrary.whenICheckThisIsEnabled(elementsPage.impressiveRadio));
 
     }
 
-    @Test
-    public void elementsButtonTesting() throws InterruptedException {
+    @Test(enabled = true)
+    public void elementsButtonTesting() {
         uiLibrary.whenIClickOn(elementsPage.buttons);
         uiLibrary.whenIClickOn(elementsPage.clickMeBtn);
-        Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.dynamicClickMessage).equals("You have done a dynamic click"));
+        Assert.assertEquals(uiLibrary.whenIGetText(elementsPage.dynamicClickMessage), "You have done a dynamic click");
         uiLibrary.whenIRightClickOn(elementsPage.rightClickBtn);
-        Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.rightClickMessage).equals("You have done a right click"));
+        Assert.assertEquals(uiLibrary.whenIGetText(elementsPage.rightClickMessage), "You have done a right click");
         uiLibrary.whenIDoubleClickOn(elementsPage.doubleClickBtn);
-        Assert.assertTrue(uiLibrary.whenIGetText(elementsPage.doubleClickMessage).equals("You have done a double click"));
+        Assert.assertEquals(uiLibrary.whenIGetText(elementsPage.doubleClickMessage), "You have done a double click");
+    }
+
+    @Test(enabled = true)
+    public void elementsLinkTesting() {
+        uiLibrary.whenIClickOn(elementsPage.links);
+        uiLibrary.whenIClickOn(elementsPage.homeLinks);
+        uiLibrary.whenISwitchToAnotherWindow();
+        uiLibrary.whenICheckThisIsDisplayed(elementsPage.homeTrainingBanner);
+    }
+
+    @Test(enabled = true)
+    public void elementsBrokenLinksTesting() {
+        uiLibrary.whenIClickOn(elementsPage.brokenLinks);
     }
 
 }

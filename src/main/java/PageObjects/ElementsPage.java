@@ -52,6 +52,9 @@ public class ElementsPage {
     public By doubleClickMessage = By.xpath("//p[@id='doubleClickMessage']");
 
     //Links
-    public By links = By.xpath("//span[text()='Links]");
+    public By links = By.xpath("//span[text()='Links']");
+    public By brokenLinks = By.xpath("//span[text()='Broken Links - Images']");
+    public By homeLinks = By.xpath("//a[@id='simpleLink']");
+    public By homeTrainingBanner = By.xpath("//img[@alt='Selenium Online Training']");
 
 }

@@ -1,0 +1,34 @@
+<changelist name="Changes1" date="1728940108132" recycled="false">
+  <option name="PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/shelved.patch" />
+  <option name="DESCRIPTION" value="Changes" />
+  <binary>
+    <option name="BEFORE_PATH" value="target/test-classes/BaseClass.class" />
+    <option name="AFTER_PATH" value="target/test-classes/BaseClass.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/BaseClass.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/reader/configReader.class" />
+    <option name="AFTER_PATH" value="target/classes/reader/configReader.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/configReader.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/PageObjects/ElementsPage.class" />
+    <option name="AFTER_PATH" value="target/classes/PageObjects/ElementsPage.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/ElementsPage.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/Helper/JSHelper.class" />
+    <option name="AFTER_PATH" value="target/classes/Helper/JSHelper.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/JSHelper.class" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="src/test/resources/screenshots/ss.png" />
+    <option name="AFTER_PATH" value="src/test/resources/screenshots/ss.png" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/ss.png" />
+  </binary>
+  <binary>
+    <option name="BEFORE_PATH" value="target/classes/common/UILibrary.class" />
+    <option name="AFTER_PATH" value="target/classes/common/UILibrary.class" />
+    <option name="SHELVED_PATH" value="$PROJECT_DIR$/.idea/shelf/Changes1/UILibrary.class" />
+  </binary>
+</changelist>
