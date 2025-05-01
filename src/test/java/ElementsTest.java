@@ -1,4 +1,3 @@
-import Helper.JSHelper;
 import PageObjects.ElementsPage;
 import common.UILibrary;
 import org.openqa.selenium.WebDriver;
