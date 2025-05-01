@@ -15,7 +15,6 @@ public class BaseClass {
     WebDriver driver;
 
     public BaseClass() throws IOException {
-        new Initializer();
         driver = Initializer.getDriver();
     }
 
@@ -34,7 +33,7 @@ public class BaseClass {
         try {
             FileHandler.copy(ss, dest);
         } catch (Exception fileError) {
-            fileError.printStackTrace();
+            System.err.println("File not found!");
         }
         driver.quit();
     }
