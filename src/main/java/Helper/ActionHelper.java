@@ -1,5 +1,6 @@
 package Helper;
 
+import common.Initializer;
 import org.openqa.selenium.By;
 import org.openqa.selenium.JavascriptExecutor;
 import org.openqa.selenium.WebDriver;
@@ -11,8 +12,8 @@ public class ActionHelper {
     private WebDriver driver;
     private Actions action;
 
-    public ActionHelper(WebDriver driver){
-        this.driver = driver;
+    public ActionHelper(){
+        this.driver = Initializer.getDriver();
         action = new Actions(this.driver);
     }
 

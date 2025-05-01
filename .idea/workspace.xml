@@ -5,10 +5,18 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Working project">
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/BaseClass.class" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/BaseClass.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/java/BaseClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseClass.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/Helper/JSHelper.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/common/UILibrary.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/configurations.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/configurations.properties" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/classes/reader/configReader.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/BaseClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -49,29 +57,43 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;Application.BaseClass.executor&quot;: &quot;Run&quot;,
-    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
-    &quot;TestNG.BaseClass.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.ElementsTest.elementsButtonTesting.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.ElementsTest.elementsCheckBoxTesting.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.ElementsTest.elementsRadioBoxTesting.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.ElementsTest.elementsTextBoxTesting.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.ElementsTest.elementsWebTablesTesting.executor&quot;: &quot;Run&quot;,
-    &quot;TestNG.ElementsTest.executor&quot;: &quot;Run&quot;,
-    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
-    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
-    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
-    &quot;settings.editor.selected.configurable&quot;: &quot;configurable.group.language&quot;
+  <component name="PropertiesComponent"><![CDATA[{
+  "keyToString": {
+    "Application.BaseClass.executor": "Run",
+    "RunOnceActivity.ShowReadmeOnStart": "true",
+    "TestNG.BaseClass.executor": "Run",
+    "TestNG.ElementsTest.elementsButtonTesting.executor": "Run",
+    "TestNG.ElementsTest.elementsCheckBoxTesting.executor": "Run",
+    "TestNG.ElementsTest.elementsRadioBoxTesting.executor": "Run",
+    "TestNG.ElementsTest.elementsTextBoxTesting.executor": "Run",
+    "TestNG.ElementsTest.elementsWebTablesTesting.executor": "Run",
+    "TestNG.ElementsTest.executor": "Run",
+    "git-widget-placeholder": "main",
+    "kotlin-language-version-configured": "true",
+    "project.structure.last.edited": "Modules",
+    "project.structure.proportion": "0.15",
+    "project.structure.side.proportion": "0.2",
+    "run.code.analysis.last.selected.profile": "pProject Default",
+    "settings.editor.selected.configurable": "preferences.keymap"
   }
-}</component>
+}]]></component>
   <component name="RecentsManager">
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Helper" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.ElementsTest.elementsButtonTesting">
+  <component name="RunManager" selected="TestNG.ElementsTest">
+    <configuration name="ElementsTest" type="TestNG" temporary="true" nameIsGenerated="true">
+      <module name="Selenium2024" />
+      <option name="PACKAGE_NAME" value="" />
+      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
+      <option name="TEST_OBJECT" value="CLASS" />
+      <properties />
+      <listeners />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ElementsTest.elementsButtonTesting" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium2024" />
       <option name="PACKAGE_NAME" value="" />
@@ -108,18 +130,6 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementsTest.elementsTextBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Selenium2024" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsTextBoxTesting" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
     <configuration name="ElementsTest.elementsWebTablesTesting" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium2024" />
       <option name="PACKAGE_NAME" value="" />
@@ -134,11 +144,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="TestNG.ElementsTest" />
         <item itemvalue="TestNG.ElementsTest.elementsButtonTesting" />
         <item itemvalue="TestNG.ElementsTest.elementsWebTablesTesting" />
         <item itemvalue="TestNG.ElementsTest.elementsRadioBoxTesting" />
         <item itemvalue="TestNG.ElementsTest.elementsCheckBoxTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsTextBoxTesting" />
       </list>
     </recent_temporary>
   </component>
