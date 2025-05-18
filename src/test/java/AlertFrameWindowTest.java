@@ -1,4 +1,5 @@
 import PageObjects.AlertFramePage;
+import common.BaseClass;
 import common.Initializer;
 import common.UILibrary;
 import org.testng.Assert;
