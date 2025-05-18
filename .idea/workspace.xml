@@ -4,18 +4,9 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Working project">
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+    <list default="true" id="88dac95a-f16e-410e-af09-c0a1f188cf56" name="Changes" comment="Git ignore file updated 2">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pom.xml" beforeDir="false" afterPath="$PROJECT_DIR$/pom.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/Helper/ActionHelper.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/test/java/BaseClass.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/java/BaseClass.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/Helper/JSHelper.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/PageObjects/ElementsPage.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/common/UILibrary.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/configurations.properties" beforeDir="false" afterPath="$PROJECT_DIR$/target/classes/configurations.properties" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/classes/reader/configReader.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/target/test-classes/BaseClass.class" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/src/test/resources/screenshots/ss.png" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" beforeDir="false" afterPath="$PROJECT_DIR$/target/test-classes/screenshots/ss.png" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -57,32 +48,53 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent"><![CDATA[{
-  "keyToString": {
-    "Application.BaseClass.executor": "Run",
-    "RunOnceActivity.ShowReadmeOnStart": "true",
-    "TestNG.BaseClass.executor": "Run",
-    "TestNG.ElementsTest.elementsButtonTesting.executor": "Run",
-    "TestNG.ElementsTest.elementsCheckBoxTesting.executor": "Run",
-    "TestNG.ElementsTest.elementsRadioBoxTesting.executor": "Run",
-    "TestNG.ElementsTest.elementsTextBoxTesting.executor": "Run",
-    "TestNG.ElementsTest.elementsWebTablesTesting.executor": "Run",
-    "TestNG.ElementsTest.executor": "Run",
-    "git-widget-placeholder": "main",
-    "kotlin-language-version-configured": "true",
-    "project.structure.last.edited": "Modules",
-    "project.structure.proportion": "0.15",
-    "project.structure.side.proportion": "0.2",
-    "run.code.analysis.last.selected.profile": "pProject Default",
-    "settings.editor.selected.configurable": "preferences.keymap"
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.BaseClass.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Temp.executor&quot;: &quot;Run&quot;,
+    &quot;Application.Temp1.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;TestNG.BaseClass.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ElementsTest.elementsButtonTesting.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ElementsTest.elementsCheckBoxTesting.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ElementsTest.elementsRadioBoxTesting.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ElementsTest.elementsTextBoxTesting.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ElementsTest.elementsWebTablesTesting.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.ElementsTest.executor&quot;: &quot;Run&quot;,
+    &quot;TestNG.SeleniumTests.NewWindow.executor&quot;: &quot;Run&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_directory_selection&quot;: &quot;/Users/arkushwaha/IdeaProjects/Selenium2024/src/test/java&quot;,
+    &quot;project.structure.last.edited&quot;: &quot;Modules&quot;,
+    &quot;project.structure.proportion&quot;: &quot;0.15&quot;,
+    &quot;project.structure.side.proportion&quot;: &quot;0.2&quot;,
+    &quot;run.code.analysis.last.selected.profile&quot;: &quot;pProject Default&quot;,
+    &quot;settings.editor.selected.configurable&quot;: &quot;reference.projectsettings.compiler.javacompiler&quot;
   }
-}]]></component>
+}</component>
   <component name="RecentsManager">
+    <key name="MoveClassesOrPackagesDialog.RECENTS_KEY">
+      <recent name="common" />
+    </key>
     <key name="CopyClassDialog.RECENTS_KEY">
       <recent name="Helper" />
     </key>
   </component>
-  <component name="RunManager" selected="TestNG.ElementsTest">
+  <component name="RunManager" selected="Application.secondLargestNumberInArray">
+    <configuration name="getNumbersFromNestedList" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javaPrograms.getNumbersFromNestedList" />
+      <module name="Selenium2024" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
+    <configuration name="secondLargestNumberInArray" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="javaPrograms.secondLargestNumberInArray" />
+      <module name="Selenium2024" />
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="ElementsTest" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium2024" />
       <option name="PACKAGE_NAME" value="" />
@@ -106,35 +118,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration name="ElementsTest.elementsCheckBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
+    <configuration name="SeleniumTests.NewWindow" type="TestNG" temporary="true" nameIsGenerated="true">
       <module name="Selenium2024" />
       <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsCheckBoxTesting" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ElementsTest.elementsRadioBoxTesting" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Selenium2024" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsRadioBoxTesting" />
-      <option name="TEST_OBJECT" value="METHOD" />
-      <properties />
-      <listeners />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
-    <configuration name="ElementsTest.elementsWebTablesTesting" type="TestNG" temporary="true" nameIsGenerated="true">
-      <module name="Selenium2024" />
-      <option name="PACKAGE_NAME" value="" />
-      <option name="MAIN_CLASS_NAME" value="ElementsTest" />
-      <option name="METHOD_NAME" value="elementsWebTablesTesting" />
+      <option name="MAIN_CLASS_NAME" value="SeleniumTests" />
+      <option name="METHOD_NAME" value="NewWindow" />
       <option name="TEST_OBJECT" value="METHOD" />
       <properties />
       <listeners />
@@ -144,11 +132,11 @@
     </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="Application.secondLargestNumberInArray" />
+        <item itemvalue="Application.getNumbersFromNestedList" />
+        <item itemvalue="TestNG.SeleniumTests.NewWindow" />
         <item itemvalue="TestNG.ElementsTest" />
         <item itemvalue="TestNG.ElementsTest.elementsButtonTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsWebTablesTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsRadioBoxTesting" />
-        <item itemvalue="TestNG.ElementsTest.elementsCheckBoxTesting" />
       </list>
     </recent_temporary>
   </component>
@@ -185,7 +173,31 @@
       <option name="project" value="LOCAL" />
       <updated>1728125115686</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Updates on 18 May 2025">
+      <option name="closed" value="true" />
+      <created>1747592968881</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1747592968881</updated>
+    </task>
+    <task id="LOCAL-00005" summary="Git ignore file updated">
+      <option name="closed" value="true" />
+      <created>1747593235126</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1747593235126</updated>
+    </task>
+    <task id="LOCAL-00006" summary="Git ignore file updated 2">
+      <option name="closed" value="true" />
+      <created>1747593267005</created>
+      <option name="number" value="00006" />
+      <option name="presentableId" value="LOCAL-00006" />
+      <option name="project" value="LOCAL" />
+      <updated>1747593267005</updated>
+    </task>
+    <option name="localTasksCounter" value="7" />
     <servers />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
@@ -202,6 +214,10 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Project Setup" />
     <MESSAGE value="Working project" />
-    <option name="LAST_COMMIT_MESSAGE" value="Working project" />
+    <MESSAGE value="Elements done." />
+    <MESSAGE value="Updates on 18 May 2025" />
+    <MESSAGE value="Git ignore file updated" />
+    <MESSAGE value="Git ignore file updated 2" />
+    <option name="LAST_COMMIT_MESSAGE" value="Git ignore file updated 2" />
   </component>
 </project>
