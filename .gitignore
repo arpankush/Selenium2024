@@ -13,6 +13,10 @@ target/
 *.iml
 *.ipr
 
+### Generated output ###
+src/test/resources/screenshots/
+target/test-classes/screenshots/
+
 ### Eclipse ###
 .apt_generated
 .classpath
