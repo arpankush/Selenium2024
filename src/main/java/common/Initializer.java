@@ -4,6 +4,7 @@ import Helper.ActionHelper;
 import Helper.JSHelper;
 import PageObjects.AlertFramePage;
 import PageObjects.ElementsPage;
+import PageObjects.LinkedinPage;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
@@ -21,8 +22,10 @@ public class Initializer {
     static JSHelper jsHelper;
     static ElementsPage elementsPage;
     static AlertFramePage alertFramePage;
+    static LinkedinPage linkedinPage;
     public static String browser;
     public static String webUrl;
+    public static String webUrlLinkedin;
 
     static {
         try {
@@ -32,6 +35,7 @@ public class Initializer {
         }
         browser = prop.getProperty("browser").toLowerCase();
         webUrl = prop.getProperty("webUrl").toLowerCase();
+        webUrlLinkedin = prop.getProperty("webUrlLinkedin").toLowerCase();
     }
 
     public Initializer() throws IOException {
@@ -42,6 +46,12 @@ public class Initializer {
         if (uiLibrary == null)
             uiLibrary = new UILibrary();
         return uiLibrary;
+    }
+
+    public static LinkedinPage getLinkedinPage(){
+        if (linkedinPage == null)
+            linkedinPage = new LinkedinPage();
+        return linkedinPage;
     }
 
     public static ElementsPage getElementsPage() throws IOException {

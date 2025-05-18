@@ -20,16 +20,16 @@ public class AlertFrameWindowTest extends BaseClass {
 
     @BeforeMethod
     public void alertFramePageSetup(){
-        uiLibrary.whenIOpenThisUrl(Initializer.webUrl);
-        uiLibrary.whenIClickOn(alertFramePage.alertFrameWindowPage);
+        uiLibrary.openThisUrl(Initializer.webUrl);
+        uiLibrary.clickOn(alertFramePage.alertFrameWindowPage);
     }
 
     @Test
     public void alertTesting(){
-        uiLibrary.whenIClickOn(alertFramePage.alertFrameWindowSection);
-        uiLibrary.whenIClickOn(alertFramePage.alertButton);
-        Assert.assertEquals(uiLibrary.whenIGetAlertText(),"");
-        uiLibrary.whenIDismissAlert();
+        uiLibrary.clickOn(alertFramePage.alertFrameWindowSection);
+        uiLibrary.clickOn(alertFramePage.alertButton);
+        Assert.assertEquals(uiLibrary.getAlertText(),"");
+        uiLibrary.dismissAlert();
     }
 
 }

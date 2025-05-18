@@ -2,11 +2,12 @@ package common;
 
 import Helper.ActionHelper;
 import Helper.JSHelper;
-import org.openqa.selenium.Alert;
-import org.openqa.selenium.By;
-import org.openqa.selenium.WebDriver;
+import org.openqa.selenium.*;
+import org.openqa.selenium.io.FileHandler;
 
+import java.io.File;
 import java.io.IOException;
+import java.time.Duration;
 import java.util.Iterator;
 
 public class UILibrary {
@@ -20,30 +21,47 @@ public class UILibrary {
         actionHelper = Initializer.getActionHelper();
     }
 
-    public void whenIOpenThisUrl(String obj) {
+    public void openThisUrl(String obj) {
         driver.get(obj);
     }
+    public void maximizeWindow() {
+        driver.manage().window().maximize();
+    }
 
-    public void whenIClickOn(By obj) {
+    public void implicitlyWaitFor(int seconds) {
+        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(seconds));
+    }
+
+    public void takeScreenshot() {
+        File ss = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
+        File dest = new File(System.getProperty("user.dir") + "/src/test/resources/screenshots/ss.png");
+        try {
+            FileHandler.copy(ss, dest);
+        } catch (Exception fileError) {
+            System.err.println("File not found!");
+        }
+    }
+
+    public void clickOn(By obj) {
         jsHelper.scrollIntoViewOfElement(driver.findElement(obj));
         driver.findElement(obj).click();
     }
 
-    public void whenIRightClickOn(By obj) {
+    public void rightClickOn(By obj) {
         jsHelper.scrollIntoViewOfElement(driver.findElement(obj));
         actionHelper.rightClickOn(driver.findElement(obj));
     }
 
-    public void whenIDoubleClickOn(By obj) {
+    public void doubleClickOn(By obj) {
         jsHelper.scrollIntoViewOfElement(driver.findElement(obj));
         actionHelper.doubleClickOn(driver.findElement(obj));
     }
 
-    public void whenIScrollIntoView(By obj) {
+    public void scrollIntoView(By obj) {
         jsHelper.scrollIntoViewOfElement(driver.findElement(obj));
     }
 
-    public void whenISendKeys(By obj, String text, boolean clearToggle) {
+    public void sendKeys(By obj, String text, boolean clearToggle) {
         jsHelper.scrollIntoViewOfElement(driver.findElement(obj));
         if (clearToggle) {
             driver.findElement(obj).clear();
@@ -51,28 +69,28 @@ public class UILibrary {
         driver.findElement(obj).sendKeys(text);
     }
 
-    public void whenISendKeys(By obj, String text) {
-        whenISendKeys(obj, text, false);
+    public void sendKeys(By obj, String text) {
+        sendKeys(obj, text, false);
     }
 
-    public String whenIGetText(By obj) {
+    public String getText(By obj) {
         jsHelper.scrollIntoViewOfElement(driver.findElement(obj));
         return driver.findElement(obj).getText();
     }
 
-    public boolean whenICheckThisIsDisplayed(By obj) {
+    public boolean isDisplayed(By obj) {
         return driver.findElement(obj).isDisplayed();
     }
 
-    public boolean whenICheckThisIsEnabled(By obj) {
+    public boolean isEnabled(By obj) {
         return driver.findElement(obj).isEnabled();
     }
 
-    public boolean whenICheckThisIsSelected(By obj) {
+    public boolean isSelected(By obj) {
         return driver.findElement(obj).isSelected();
     }
 
-    public void whenISwitchToAnotherWindow() {
+    public void switchToAnotherWindow() {
         String parentWindow = driver.getWindowHandle();
         Iterator<String> itr = driver.getWindowHandles().iterator();
         while (itr.hasNext()) {
@@ -82,22 +100,25 @@ public class UILibrary {
         }
     }
 
-    public String whenIGetAlertText(){
+    public String getAlertText(){
         Alert alert = driver.switchTo().alert();
         return alert.getText();
     }
 
-    public void whenIAcceptAlert(){
+    public void acceptAlert(){
         driver.switchTo().alert().accept();
     }
 
-    public void whenIDismissAlert(){
+    public void dismissAlert(){
         driver.switchTo().alert().dismiss();
     }
 
-    public void whenIEnterTextInAlert(String inputText){
+    public void enterTextInAlert(String inputText){
         driver.switchTo().alert().sendKeys(inputText);
     }
+
+    public void quitDriver(){ driver.quit(); }
+    public void waitFor(int time) throws InterruptedException { Thread.sleep(time); }
 
 
 }

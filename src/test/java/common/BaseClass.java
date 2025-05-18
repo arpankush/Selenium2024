@@ -1,5 +1,7 @@
 package common;
 
+import common.Initializer;
+import common.UILibrary;
 import org.openqa.selenium.OutputType;
 import org.openqa.selenium.TakesScreenshot;
 import org.openqa.selenium.WebDriver;
@@ -12,30 +14,23 @@ import java.io.IOException;
 import java.time.Duration;
 
 public class BaseClass {
-
-    WebDriver driver;
+    private UILibrary uiLibrary;
 
     public BaseClass() throws IOException {
-        driver = Initializer.getDriver();
+        uiLibrary = Initializer.getUILibrary();
     }
 
     @BeforeSuite
     public void setup() {
-        driver.manage().window().maximize();
-        driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(5));
+        System.out.println("---BeforeSuite---");
+        uiLibrary.maximizeWindow();
+        uiLibrary.implicitlyWaitFor(5);
     }
 
     @AfterSuite
     public void tearDown() throws InterruptedException, IOException {
-        System.out.println("---AfterSuite tearDown---");
-        File ss = ((TakesScreenshot) driver).getScreenshotAs(OutputType.FILE);
-        Thread.sleep(3000);
-        File dest = new File(System.getProperty("user.dir") + "/src/test/resources/screenshots/ss.png");
-        try {
-            FileHandler.copy(ss, dest);
-        } catch (Exception fileError) {
-            System.err.println("File not found!");
-        }
-        driver.quit();
+        System.out.println("---AfterSuite---");
+        uiLibrary.takeScreenshot();
+        uiLibrary.quitDriver();
     }
 }
