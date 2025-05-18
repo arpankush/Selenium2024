@@ -12,6 +12,7 @@ target/
 *.iws
 *.iml
 *.ipr
+.idea/workspace.xml
 
 ### Generated output ###
 src/test/resources/screenshots/
