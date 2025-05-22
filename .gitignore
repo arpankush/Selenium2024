@@ -12,11 +12,12 @@ target/
 *.iws
 *.iml
 *.ipr
-.idea/workspace.xml
+*/workspace.xml
+*/misc.xml
 
 ### Generated output ###
 src/test/resources/screenshots/
-target/test-classes/screenshots/
+target/*
 
 ### Eclipse ###
 .apt_generated
