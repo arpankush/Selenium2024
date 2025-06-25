@@ -1,5 +1,7 @@
 package common;
 
+package tests;
+
 import common.Initializer;
 import common.UILibrary;
 import org.openqa.selenium.OutputType;
@@ -22,14 +24,14 @@ public class BaseClass {
 
     @BeforeSuite
     public void setup() {
-        System.out.println("---BeforeSuite---");
+        System.out.println("Running BeforeSuite");
         uiLibrary.maximizeWindow();
         uiLibrary.implicitlyWaitFor(5);
     }
 
     @AfterSuite
     public void tearDown() throws InterruptedException, IOException {
-        System.out.println("---AfterSuite---");
+        System.out.println("Running AfterSuite");
         uiLibrary.takeScreenshot();
         uiLibrary.quitDriver();
     }

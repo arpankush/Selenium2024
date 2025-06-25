@@ -1,3 +1,5 @@
+package tests;
+
 import PageObjects.LinkedinPage;
 import common.Initializer;
 import common.UILibrary;
