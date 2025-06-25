@@ -16,7 +16,7 @@ workspace.xml
 */misc.xml
 
 ### Generated output ###
-src/test/resources/screenshots/
+*/screenshots/
 target/*
 
 ### Eclipse ###
