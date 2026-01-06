@@ -1,7 +1,9 @@
+package tests;
+
 import PageObjects.AlertFramePage;
-import common.BaseClass;
 import common.Initializer;
 import common.UILibrary;
+import common.tests.BaseClass;
 import org.testng.Assert;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;

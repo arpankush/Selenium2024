@@ -1,6 +1,4 @@
-package common;
-
-package tests;
+package common.tests;
 
 import common.Initializer;
 import common.UILibrary;
