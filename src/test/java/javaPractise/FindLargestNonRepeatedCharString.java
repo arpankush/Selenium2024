@@ -1,4 +1,4 @@
-package practise;
+package javaPractise;
 
 import org.testng.annotations.Test;
 

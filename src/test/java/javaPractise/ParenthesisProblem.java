@@ -1,8 +1,7 @@
-package practise;
+package javaPractise;
 
 import org.testng.annotations.Test;
 
-import java.util.HashMap;
 import java.util.Stack;
 
 public class ParenthesisProblem {
