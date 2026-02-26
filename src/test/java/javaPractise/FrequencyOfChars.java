@@ -10,6 +10,20 @@ import java.util.Optional;
 public class FrequencyOfChars {
 
     @Test
+    public void simpleMethodUsingHashMap() {
+        String in = "A BB CCC DD Ee";
+        HashMap<Character, Integer> hm = new HashMap<>();
+        for (char c : in.toLowerCase().toCharArray()) {
+            hm.put(c, hm.getOrDefault(c, 0) + 1);
+        }
+        for (Map.Entry<Character, Integer> e : hm.entrySet()) {
+            if (e.getValue() > 1 && e.getKey() != ' ') {
+                System.out.println(e.getKey() + ": " + e.getValue());
+            }
+        }
+    }
+
+    @Test
     public void frequencyOfChars(){
 
         char[] inputArray = {'a', 'w', 'g', 'q', 'a', 't', 'g', 'q', 'q', 'n'};
