@@ -1,4 +1,4 @@
-package javaPractise;
+package javaPractise.String;
 import java.util.*;
 import org.testng.annotations.Test;
 
@@ -12,7 +12,6 @@ public class FindFirstNonRepeatingCharacter {
         for(char c: in.toLowerCase().toCharArray()){
             hm.put(c, hm.getOrDefault(c, 0) + 1);
         }
-        System.out.println(hm);
         for(Map.Entry<Character, Integer> e: hm.entrySet()){
             if(e.getValue() == 1){
                 System.out.println(e.getKey());
